@@ -1,9 +1,20 @@
-[gd_scene load_steps=8 format=3 uid="uid://dco7pft67a002"]
+[gd_scene load_steps=10 format=3 uid="uid://dco7pft67a002"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_bj08v"]
 [ext_resource type="Texture2D" uid="uid://b2x7atoe2bsnl" path="res://scenes/game_object/player/wizard.png" id="1_ln76j"]
 [ext_resource type="PackedScene" uid="uid://bxndmxcuifxap" path="res://scenes/ability/sword_ability_controller/sword_ability_controller.tscn" id="2_5bfvv"]
 [ext_resource type="PackedScene" uid="uid://b22eo5ldww7qh" path="res://scenes/component/health_component.tscn" id="2_ea2a2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x4su7"]
+bg_color = Color(0, 0, 0, 1)
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_detail = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1y6xk"]
+bg_color = Color(0, 0.52549, 0, 1)
+border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aeoo5"]
 radius = 32.0
@@ -28,6 +39,19 @@ one_shot = true
 [node name="AbilityManager" type="Node" parent="."]
 
 [node name="SwordAbilityController" parent="AbilityManager" instance=ExtResource("2_5bfvv")]
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(16, 3)
+offset_left = -8.0
+offset_top = 1.0
+offset_right = 8.0
+offset_bottom = 4.0
+pivot_offset = Vector2(8, 1.5)
+theme_override_styles/background = SubResource("StyleBoxFlat_x4su7")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1y6xk")
+max_value = 1.0
+value = 0.5
+show_percentage = false
 
 [node name="PickupArea2D" type="Area2D" parent="."]
 position = Vector2(0, -5)
