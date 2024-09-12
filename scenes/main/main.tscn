@@ -34,10 +34,10 @@ arena_time_manager = NodePath("../ArenaTimeManager")
 
 [node name="GameCamera" parent="." instance=ExtResource("3_e6yyg")]
 position = Vector2(478, 448)
-limit_left = -200
-limit_top = -200
-limit_right = 1200
-limit_bottom = 1100
+limit_left = -300
+limit_top = -300
+limit_right = 1300
+limit_bottom = 1200
 limit_smoothed = true
 position_smoothing_enabled = true
 editor_draw_limits = true
