@@ -3,6 +3,9 @@ extends CharacterBody2D
 @onready var damage_interval_timer : Timer = $DamageIntervalTimer
 @onready var health_component : HealthComponent = $HealthComponent
 @onready var health_bar : ProgressBar = $HealthBar
+@onready var abilities_node : Node = $Abilities
+@onready var anim_player : AnimationPlayer = $AnimationPlayer
+@onready var visuals : Node2D = $Visuals
 
 const MAX_SPEED = 125
 const ACCELERATION_SMOOTHING = 11
@@ -14,6 +17,7 @@ func _ready():
 	$CollisionArea2D.body_exited.connect(on_body_exited)
 	damage_interval_timer.timeout.connect(on_damage_interval_timer_timeout)
 	health_component.health_changed.connect(on_health_changed)
+	GameEvents.ability_upgrade_added.connect(on_ability_upgrade_added)
 	update_health_display()
 
 
@@ -24,6 +28,17 @@ func _process(delta):
 	velocity = velocity.lerp(target_velocity, 1 - exp(-delta * ACCELERATION_SMOOTHING))
 	
 	move_and_slide()
+	
+	# Play walk animation
+	if movement_vector.x != 0 || movement_vector.y != 0:
+		anim_player.play("walk")
+	else:
+		anim_player.play("RESET")
+		
+	# Face Movement Direction
+	var move_sign = sign(movement_vector.x)
+	if move_sign != 0:
+		visuals.scale.x = move_sign
 
 func get_movement_vector():
 	var x_movement = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
@@ -53,3 +68,10 @@ func on_damage_interval_timer_timeout():
 
 func on_health_changed():
 	health_bar.value = health_component.get_health_percent()
+	
+func on_ability_upgrade_added(ability_upgrade : AbilityUpgrade, _current_upgrades : Dictionary):
+	if not ability_upgrade is Ability:
+		return
+	
+	var ability : Ability = ability_upgrade
+	abilities_node.add_child(ability.ability_controller_scene.instantiate())
