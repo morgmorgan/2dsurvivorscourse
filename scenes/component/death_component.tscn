@@ -1,13 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://c10c15uj7tma"]
+[gd_scene load_steps=7 format=3 uid="uid://c10c15uj7tma"]
 
+[ext_resource type="Script" path="res://scenes/component/death_component.gd" id="1_dxadf"]
 [ext_resource type="Texture2D" uid="uid://c5vd8l2dq3c2w" path="res://scenes/game_object/basic_enemy/basic_enemy.png" id="1_m3tjy"]
 
-[sub_resource type="Animation" id="Animation_csj3n"]
+[sub_resource type="Animation" id="Animation_t6jr1"]
 resource_name = "default"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/path = NodePath("ParticlesCPU:emitting")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -31,12 +32,12 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_26n4c"]
+[sub_resource type="Animation" id="Animation_llxpf"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/path = NodePath("ParticlesCPU:emitting")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -48,41 +49,33 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tj1qr"]
 _data = {
-"RESET": SubResource("Animation_26n4c"),
-"default": SubResource("Animation_csj3n")
+"RESET": SubResource("Animation_llxpf"),
+"default": SubResource("Animation_t6jr1")
 }
 
-[sub_resource type="Curve" id="Curve_vf72s"]
-_data = [Vector2(0, 1), 0.0, -0.691575, 0, 1, Vector2(0.75, 0.481319), 0.0, 0.0, 0, 0, Vector2(1, 0), -0.710819, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_4u6sr"]
+_data = [Vector2(0, 1), 0.0, -0.550885, 0, 1, Vector2(0.898601, 0.504974), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.98009, 0.0, 1, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_ogdnd"]
-curve = SubResource("Curve_vf72s")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_thyea"]
-particle_flag_disable_z = true
-direction = Vector3(0, -1, 0)
-spread = 30.0
-initial_velocity_min = 150.0
-initial_velocity_max = 200.0
-angular_velocity_min = -720.0
-angular_velocity_max = 720.0
-gravity = Vector3(0, 400, 0)
-scale_curve = SubResource("CurveTexture_ogdnd")
-
 [node name="DeathComponent" type="Node2D"]
+script = ExtResource("1_dxadf")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_tj1qr")
 }
-autoplay = "default"
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="ParticlesCPU" type="CPUParticles2D" parent="."]
 emitting = false
 amount = 1
-process_material = SubResource("ParticleProcessMaterial_thyea")
-texture = ExtResource("1_m3tjy")
-lifetime = 0.65
+lifetime = 0.5
 one_shot = true
-interpolate = false
+texture = ExtResource("1_m3tjy")
+direction = Vector2(0, -1)
+spread = 15.0
+gravity = Vector2(0, 500)
+initial_velocity_min = 150.0
+initial_velocity_max = 200.0
+angular_velocity_min = -500.0
+angular_velocity_max = 500.0
+scale_amount_curve = SubResource("Curve_4u6sr")
