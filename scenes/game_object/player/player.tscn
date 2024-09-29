@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=3 uid="uid://dco7pft67a002"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_bj08v"]
-[ext_resource type="Texture2D" uid="uid://b2x7atoe2bsnl" path="res://scenes/game_object/player/wizard.png" id="1_ln76j"]
 [ext_resource type="PackedScene" uid="uid://bxndmxcuifxap" path="res://scenes/ability/sword_ability_controller/sword_ability_controller.tscn" id="2_5bfvv"]
 [ext_resource type="PackedScene" uid="uid://b22eo5ldww7qh" path="res://scenes/component/health_component.tscn" id="2_ea2a2"]
+[ext_resource type="Texture2D" uid="uid://b25bfnw5lif0o" path="res://scenes/game_object/player/player.png" id="4_32dqs"]
 
 [sub_resource type="Animation" id="Animation_b3poy"]
 length = 0.001
@@ -104,13 +104,13 @@ bg_color = Color(0, 0.52549, 0, 1)
 border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aeoo5"]
-radius = 32.0
+radius = 48.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ncmcp"]
 radius = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0luep"]
-radius = 6.0
+radius = 8.0
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 0
@@ -146,7 +146,7 @@ value = 0.5
 show_percentage = false
 
 [node name="PickupArea2D" type="Area2D" parent="."]
-position = Vector2(0, -5)
+position = Vector2(0, -11)
 collision_layer = 16
 collision_mask = 0
 
@@ -160,14 +160,15 @@ shape = SubResource("CircleShape2D_ncmcp")
 [node name="Visuals" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Visuals"]
-texture = ExtResource("1_ln76j")
-offset = Vector2(0, -8)
+texture = ExtResource("4_32dqs")
+offset = Vector2(0, -16)
+flip_h = true
 
 [node name="CollisionArea2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionArea2D"]
-position = Vector2(0, -6)
+position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_0luep")
 debug_color = Color(0.983048, 0, 0.356635, 0.42)

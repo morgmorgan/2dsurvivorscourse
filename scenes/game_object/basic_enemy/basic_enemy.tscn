@@ -1,11 +1,11 @@
 [gd_scene load_steps=12 format=3 uid="uid://cx1avpqevshhw"]
 
 [ext_resource type="Script" path="res://scenes/game_object/basic_enemy/basic_enemy.gd" id="1_decuw"]
-[ext_resource type="Texture2D" uid="uid://c5vd8l2dq3c2w" path="res://scenes/game_object/basic_enemy/basic_enemy.png" id="1_oskfu"]
 [ext_resource type="PackedScene" uid="uid://b22eo5ldww7qh" path="res://scenes/component/health_component.tscn" id="2_aslc5"]
 [ext_resource type="PackedScene" uid="uid://vfb2vveyuicg" path="res://scenes/component/vial_drop_component.tscn" id="3_hs8px"]
 [ext_resource type="PackedScene" uid="uid://c10c15uj7tma" path="res://scenes/component/death_component.tscn" id="4_7mvf3"]
 [ext_resource type="PackedScene" uid="uid://dg7d4g8y0jla6" path="res://scenes/component/hurt_box_component.tscn" id="4_yowlv"]
+[ext_resource type="Texture2D" uid="uid://caud6hcvjlitq" path="res://scenes/game_object/basic_enemy/crab.png" id="6_nn73l"]
 
 [sub_resource type="Animation" id="Animation_w3dws"]
 length = 0.001
@@ -71,10 +71,10 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_scm40"]
-radius = 12.0
+radius = 13.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oxed7"]
-radius = 5.0
+radius = 7.0
 
 [node name="BasicEnemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 8
@@ -102,7 +102,7 @@ health_component = NodePath("../HealthComponent")
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
-position = Vector2(0, -8)
+position = Vector2(0, -9)
 shape = SubResource("CircleShape2D_scm40")
 debug_color = Color(2.21401e-06, 0.638353, 0.379845, 0.42)
 metadata/_edit_lock_ = true
@@ -110,8 +110,8 @@ metadata/_edit_lock_ = true
 [node name="Visuals" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Visuals"]
-texture = ExtResource("1_oskfu")
-offset = Vector2(0, -8)
+texture = ExtResource("6_nn73l")
+offset = Vector2(1, -16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)
