@@ -27,3 +27,6 @@ func move(character_body : CharacterBody2D):
 func accelerate_in_direction(direction : Vector2):
 	var target_velocity = direction * max_speed
 	velocity = velocity.lerp(target_velocity, 1 - exp(-acceleration * get_process_delta_time()))
+
+func decelerate():
+	accelerate_in_direction(Vector2.ZERO)

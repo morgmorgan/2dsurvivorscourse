@@ -73,5 +73,5 @@ func on_arena_difficulty_increased(arena_difficulty : int):
 	var spawn_factor : float = MAX_SPAWN_INTERVAL / number_of_intervals
 	timer_node.wait_time = max(base_spawn_interval - (arena_difficulty * spawn_factor), 0.1) 
 	
-	if arena_difficulty == 6:
+	if arena_difficulty == 3:
 		enemy_table.add_item(slime_enemy_scene, 20)
