@@ -38,6 +38,10 @@ enemy=""
 entities_layer=""
 foreground_layer=""
 
+[gui]
+
+theme/custom="res://resources/theme/main_theme.tres"
+
 [input]
 
 move_left={
