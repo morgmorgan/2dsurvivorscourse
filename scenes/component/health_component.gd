@@ -18,6 +18,8 @@ func damage(in_damage : float):
 
 func check_death():
 	if current_health == 0:
+		## Wait so we can see the hit flash
+		#await.get_tree().create_timer(0.1).timeout
 		died.emit()
 		owner.queue_free()
 		

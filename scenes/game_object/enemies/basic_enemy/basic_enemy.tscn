@@ -1,10 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://cx1avpqevshhw"]
+[gd_scene load_steps=16 format=3 uid="uid://cx1avpqevshhw"]
 
 [ext_resource type="Script" path="res://scenes/game_object/enemies/basic_enemy/basic_enemy.gd" id="1_decuw"]
 [ext_resource type="PackedScene" uid="uid://b22eo5ldww7qh" path="res://scenes/component/health_component.tscn" id="2_aslc5"]
 [ext_resource type="PackedScene" uid="uid://vfb2vveyuicg" path="res://scenes/component/vial_drop_component.tscn" id="3_hs8px"]
 [ext_resource type="PackedScene" uid="uid://c10c15uj7tma" path="res://scenes/component/death_component.tscn" id="4_7mvf3"]
 [ext_resource type="PackedScene" uid="uid://dg7d4g8y0jla6" path="res://scenes/component/hurt_box_component.tscn" id="4_yowlv"]
+[ext_resource type="PackedScene" uid="uid://yr3n3mnmpyiw" path="res://scenes/component/hit_flash_component.tscn" id="5_ujhvg"]
+[ext_resource type="Shader" path="res://scenes/component/hit_flash_component.gdshader" id="6_iy3hl"]
 [ext_resource type="Texture2D" uid="uid://caud6hcvjlitq" path="res://scenes/game_object/enemies/basic_enemy/crab.png" id="6_nn73l"]
 [ext_resource type="PackedScene" uid="uid://da0m6ws3pykon" path="res://scenes/component/velocity_component.tscn" id="7_4yyos"]
 
@@ -71,6 +73,11 @@ _data = {
 "walk": SubResource("Animation_g8j6j")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ugjjh"]
+resource_local_to_scene = true
+shader = ExtResource("6_iy3hl")
+shader_parameter/lerp_percent = 0.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_scm40"]
 radius = 13.0
 
@@ -97,6 +104,11 @@ max_health = 5.0
 
 [node name="VialDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_hs8px")]
 health_component = NodePath("../HealthComponent")
+
+[node name="HitFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("5_ujhvg")]
+health_component = NodePath("../HealthComponent")
+sprite = NodePath("../Visuals/Sprite2D")
+hit_flash_material = SubResource("ShaderMaterial_ugjjh")
 
 [node name="DeathComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("4_7mvf3")]
 health_component = NodePath("../HealthComponent")
