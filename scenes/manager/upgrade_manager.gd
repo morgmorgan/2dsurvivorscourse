@@ -1,28 +1,44 @@
 extends Node
 
-@export var upgrade_pool : Array[AbilityUpgrade]
 @export var experience_manager : ExperienceManager
 @export var upgrade_screen_scene : PackedScene
+@export var all_upgrades : Array[AbilityUpgrade]
 
 var current_upgrades = {}
+var upgrade_pool : WeightedTable = WeightedTable.new()
+var upgrade_options = 3
+
+###### Upgrades
+var upgrade_axe = preload("res://resources/upgrades/axe.tres")
+var upgrade_axe_damage = preload("res://resources/upgrades/axe_damage.tres")
+var upgrade_sword_rate = preload("res://resources/upgrades/sword_rate.tres")
+var upgrade_sword_damage = preload("res://resources/upgrades/sword_damage.tres")
 
 func _ready():
+	create_upgrade_pool()	
 	experience_manager.level_up.connect(on_level_up)
 	
+func create_upgrade_pool():
+	upgrade_pool.add_item(upgrade_axe, 10)
+	upgrade_pool.add_item(upgrade_sword_rate, 10)
+	upgrade_pool.add_item(upgrade_sword_damage, 10)
+	
+func update_upgrade_pool(chosen_upgrade : AbilityUpgrade):
+	if chosen_upgrade.id == upgrade_axe.id:
+		upgrade_pool.add_item(upgrade_axe_damage, 10)
+		
+	#for 
+
 func pick_upgrades():
 	var chosen_upgrades : Array[AbilityUpgrade] = []
-	var filtered_upgrades = upgrade_pool.duplicate()
-	var num_upgrades = 3
-	
-	for i in num_upgrades:
-		if filtered_upgrades.is_empty():
+
+	for i in upgrade_options:
+		if upgrade_pool.items.size() == chosen_upgrades.size():
 			break
 		
-		var this_chosen_upgrade : AbilityUpgrade = filtered_upgrades.pick_random()
+		var this_chosen_upgrade : AbilityUpgrade = upgrade_pool.pick_item(chosen_upgrades)
 		chosen_upgrades.append(this_chosen_upgrade)
-		filtered_upgrades.erase(this_chosen_upgrade)
-		#filtered_upgrades = filtered_upgrades.filter(func(upgrade): return upgrade.id != this_chosen_upgrade.id)
-	
+		
 	return chosen_upgrades
 
 func apply_upgrade(upgrade : AbilityUpgrade):
@@ -36,10 +52,9 @@ func apply_upgrade(upgrade : AbilityUpgrade):
 		
 	if upgrade.max_quantity > 0:
 		if current_upgrades[upgrade.id]["quantity"] == upgrade.max_quantity:
-			#upgrade_pool = upgrade_pool.filter(
-			#	func(pool_upgrade): return pool_upgrade.id != upgrade
-			#)
-			upgrade_pool.erase(upgrade)
+			upgrade_pool.remove_item(upgrade)
+	
+	update_upgrade_pool(upgrade)
 	
 	GameEvents.emit_ability_upgrade_added(upgrade, current_upgrades)
 	

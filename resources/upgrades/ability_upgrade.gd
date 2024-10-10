@@ -5,3 +5,4 @@ class_name AbilityUpgrade
 @export var max_quantity : int
 @export var name : String
 @export_multiline var description : String
+@export var prerequisite_ids : Array[String]
