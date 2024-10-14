@@ -1,7 +1,34 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bv214oib6vnrg"]
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://bv214oib6vnrg"]
 
+[ext_resource type="Texture2D" uid="uid://c4lgipbcg0yrt" path="res://assets/ui/ui_elements.png" id="1_3l4nd"]
 [ext_resource type="FontFile" uid="uid://b0wv802mdevfk" path="res://resources/theme/KarenFat.ttf" id="1_juqo5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_meraf"]
+content_margin_left = 16.0
+content_margin_top = 4.0
+content_margin_right = 16.0
+content_margin_bottom = 4.0
+texture = ExtResource("1_3l4nd")
+texture_margin_left = 7.0
+texture_margin_top = 7.0
+texture_margin_right = 7.0
+texture_margin_bottom = 7.0
+region_rect = Rect2(32, 0, 32, 32)
+modulate_color = Color(0.521159, 0.582772, 0.577619, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yvedg"]
+texture = ExtResource("1_3l4nd")
+texture_margin_left = 7.0
+texture_margin_top = 6.0
+texture_margin_right = 6.0
+texture_margin_bottom = 6.0
+region_rect = Rect2(31, 0, 33, 32)
+modulate_color = Color(0.551358, 0.551358, 0.551358, 1)
 
 [resource]
 default_font = ExtResource("1_juqo5")
 default_font_size = 16
+AlternatePanelContainer/base_type = &"PanelContainer"
+AlternatePanelContainer/styles/panel = SubResource("StyleBoxTexture_meraf")
+Label/constants/line_spacing = 0
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_yvedg")
