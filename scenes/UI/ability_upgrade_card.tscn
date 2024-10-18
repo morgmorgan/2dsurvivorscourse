@@ -1,13 +1,198 @@
-[gd_scene load_steps=2 format=3 uid="uid://byq4ut2f1lshs"]
+[gd_scene load_steps=10 format=3 uid="uid://byq4ut2f1lshs"]
 
 [ext_resource type="Script" path="res://scenes/UI/ability_upgrade_card.gd" id="1_fcx0b"]
 
-[node name="AbilityUpgradeCard" type="PanelContainer"]
-custom_minimum_size = Vector2(120, 150)
+[sub_resource type="Animation" id="Animation_dx0qc"]
+resource_name = "hover"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0872665, 0.0872665, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_7620m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_isxnt"]
+_data = {
+"RESET": SubResource("Animation_7620m"),
+"hover": SubResource("Animation_dx0qc")
+}
+
+[sub_resource type="Animation" id="Animation_y6jn1"]
+resource_name = "in"
+length = 0.4
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0.3, 1.3), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.5708, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_th87s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2fnqt"]
+resource_name = "selected"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.4),
+"transitions": PackedFloat32Array(1, 2.37841, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_uym8l"]
+resource_name = "discard"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -1.5708]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.1, 0.5), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8yytm"]
+_data = {
+"RESET": SubResource("Animation_th87s"),
+"discard": SubResource("Animation_uym8l"),
+"in": SubResource("Animation_y6jn1"),
+"selected": SubResource("Animation_2fnqt")
+}
+
+[node name="AbilityUpgradeCard" type="PanelContainer" groups=["upgrade_card"]]
+custom_minimum_size = Vector2(136, 216)
+offset_right = 135.0
+offset_bottom = 215.0
+pivot_offset = Vector2(68, 108)
 script = ExtResource("1_fcx0b")
+
+[node name="HoverAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_isxnt")
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8yytm")
+}
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = -2
 theme_override_constants/margin_right = 0
@@ -15,15 +200,17 @@ theme_override_constants/margin_bottom = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 8
 
 [node name="NameContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-mouse_filter = 1
+mouse_filter = 2
 theme_type_variation = &"AlternatePanelContainer"
 
 [node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer/NameContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(90, 65)
 layout_mode = 2
 theme_override_constants/outline_size = 9
 theme_override_font_sizes/font_size = 32
