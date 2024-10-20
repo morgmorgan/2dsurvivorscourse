@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://bv214oib6vnrg"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://bv214oib6vnrg"]
 
 [ext_resource type="Texture2D" uid="uid://c4lgipbcg0yrt" path="res://assets/ui/ui_elements.png" id="1_3l4nd"]
 [ext_resource type="FontFile" uid="uid://b0wv802mdevfk" path="res://resources/theme/KarenFat.ttf" id="1_juqo5"]
@@ -16,19 +16,66 @@ texture_margin_bottom = 7.0
 region_rect = Rect2(32, 0, 32, 32)
 modulate_color = Color(0.521159, 0.582772, 0.577619, 1)
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xsjp3"]
+texture = ExtResource("1_3l4nd")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(0, 0, 32, 32)
+modulate_color = Color(0.635294, 0.862745, 0.780392, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8c4so"]
+texture = ExtResource("1_3l4nd")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(0, 0, 32, 32)
+modulate_color = Color(0.635294, 0.862745, 0.780392, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g0i6g"]
+texture = ExtResource("1_3l4nd")
+texture_margin_left = 5.0
+texture_margin_top = 5.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(0, 0, 32, 32)
+modulate_color = Color(0.407843, 0.760784, 0.827451, 1)
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yvedg"]
 texture = ExtResource("1_3l4nd")
 texture_margin_left = 7.0
 texture_margin_top = 6.0
 texture_margin_right = 6.0
 texture_margin_bottom = 6.0
-region_rect = Rect2(31, 0, 33, 32)
+region_rect = Rect2(32, 0, 32, 32)
 modulate_color = Color(0.551358, 0.551358, 0.551358, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x4su7"]
+bg_color = Color(0, 0, 0, 1)
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_detail = 2
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1y6xk"]
+bg_color = Color(0, 0.52549, 0, 1)
+border_color = Color(0, 0, 0, 1)
 
 [resource]
 default_font = ExtResource("1_juqo5")
 default_font_size = 16
 AlternatePanelContainer/base_type = &"PanelContainer"
 AlternatePanelContainer/styles/panel = SubResource("StyleBoxTexture_meraf")
+Button/colors/font_color = Color(0.129412, 0.129412, 0.137255, 1)
+Button/colors/font_focus_color = Color(0.129412, 0.129412, 0.137255, 1)
+Button/colors/font_hover_color = Color(0.129412, 0.129412, 0.137255, 1)
+Button/styles/focus = SubResource("StyleBoxTexture_xsjp3")
+Button/styles/hover = SubResource("StyleBoxTexture_8c4so")
+Button/styles/normal = SubResource("StyleBoxTexture_g0i6g")
+Button/styles/pressed = null
 Label/constants/line_spacing = 0
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_yvedg")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_x4su7")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_1y6xk")

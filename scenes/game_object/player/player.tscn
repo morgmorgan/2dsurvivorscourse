@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dco7pft67a002"]
+[gd_scene load_steps=11 format=3 uid="uid://dco7pft67a002"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_bj08v"]
 [ext_resource type="PackedScene" uid="uid://bxndmxcuifxap" path="res://scenes/ability/sword_ability_controller/sword_ability_controller.tscn" id="2_5bfvv"]
@@ -92,17 +92,6 @@ _data = {
 "walk": SubResource("Animation_smmix")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x4su7"]
-bg_color = Color(0, 0, 0, 1)
-border_width_bottom = 1
-border_color = Color(0, 0, 0, 1)
-corner_detail = 2
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1y6xk"]
-bg_color = Color(0, 0.52549, 0, 1)
-border_color = Color(0, 0, 0, 1)
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_aeoo5"]
 radius = 48.0
 
@@ -139,8 +128,6 @@ offset_top = 1.0
 offset_right = 8.0
 offset_bottom = 4.0
 pivot_offset = Vector2(8, 1.5)
-theme_override_styles/background = SubResource("StyleBoxFlat_x4su7")
-theme_override_styles/fill = SubResource("StyleBoxFlat_1y6xk")
 max_value = 1.0
 value = 0.5
 show_percentage = false
