@@ -1,14 +1,26 @@
-[gd_scene load_steps=16 format=3 uid="uid://cx1avpqevshhw"]
+[gd_scene load_steps=21 format=3 uid="uid://cx1avpqevshhw"]
 
 [ext_resource type="Script" path="res://scenes/game_object/enemies/basic_enemy/basic_enemy.gd" id="1_decuw"]
 [ext_resource type="PackedScene" uid="uid://b22eo5ldww7qh" path="res://scenes/component/health_component.tscn" id="2_aslc5"]
+[ext_resource type="AudioStream" uid="uid://dnl5xrkk84fdu" path="res://assets/audio/hit1.wav" id="2_xj0t0"]
 [ext_resource type="PackedScene" uid="uid://vfb2vveyuicg" path="res://scenes/component/vial_drop_component.tscn" id="3_hs8px"]
+[ext_resource type="AudioStream" uid="uid://bjpyxd3d27syd" path="res://assets/audio/hit2.wav" id="4_4bkjs"]
 [ext_resource type="PackedScene" uid="uid://c10c15uj7tma" path="res://scenes/component/death_component.tscn" id="4_7mvf3"]
 [ext_resource type="PackedScene" uid="uid://dg7d4g8y0jla6" path="res://scenes/component/hurt_box_component.tscn" id="4_yowlv"]
+[ext_resource type="AudioStream" uid="uid://cnfb0wxenr6mq" path="res://assets/audio/hit3.wav" id="5_r1ito"]
 [ext_resource type="PackedScene" uid="uid://yr3n3mnmpyiw" path="res://scenes/component/hit_flash_component.tscn" id="5_ujhvg"]
+[ext_resource type="AudioStream" uid="uid://b6bucnxmbqjbd" path="res://assets/audio/hit4.wav" id="6_5h1sv"]
 [ext_resource type="Shader" path="res://scenes/component/hit_flash_component.gdshader" id="6_iy3hl"]
 [ext_resource type="Texture2D" uid="uid://caud6hcvjlitq" path="res://scenes/game_object/enemies/basic_enemy/crab.png" id="6_nn73l"]
 [ext_resource type="PackedScene" uid="uid://da0m6ws3pykon" path="res://scenes/component/velocity_component.tscn" id="7_4yyos"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_pjt3l"]
+playback_mode = 1
+streams_count = 4
+stream_0/stream = ExtResource("2_xj0t0")
+stream_1/stream = ExtResource("4_4bkjs")
+stream_2/stream = ExtResource("5_r1ito")
+stream_3/stream = ExtResource("6_5h1sv")
 
 [sub_resource type="Animation" id="Animation_w3dws"]
 length = 0.001
@@ -89,6 +101,9 @@ collision_layer = 8
 collision_mask = 9
 motion_mode = 1
 script = ExtResource("1_decuw")
+
+[node name="HitSoundEffect" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_pjt3l")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

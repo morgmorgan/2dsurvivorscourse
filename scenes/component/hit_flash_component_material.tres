@@ -5,4 +5,4 @@
 [resource]
 resource_local_to_scene = true
 shader = ExtResource("1_m3thl")
-shader_parameter/lerp_percent = 0.0
+shader_parameter/lerp_percent = 1.0

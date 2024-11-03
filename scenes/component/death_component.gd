@@ -20,4 +20,4 @@ func on_died():
 	global_position = spawn_pos
 	
 	$AnimationPlayer.play("default")
-	
+	$HitSoundEffect.play()
