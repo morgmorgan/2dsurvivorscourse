@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://dco7pft67a002"]
+[gd_scene load_steps=14 format=3 uid="uid://dco7pft67a002"]
 
 [ext_resource type="Script" path="res://scenes/game_object/player/player.gd" id="1_bj08v"]
+[ext_resource type="AudioStream" uid="uid://bqcgacvmwxu0i" path="res://assets/audio/oof.wav" id="2_1xykq"]
 [ext_resource type="PackedScene" uid="uid://bxndmxcuifxap" path="res://scenes/ability/sword_ability_controller/sword_ability_controller.tscn" id="2_5bfvv"]
 [ext_resource type="PackedScene" uid="uid://b22eo5ldww7qh" path="res://scenes/component/health_component.tscn" id="2_ea2a2"]
 [ext_resource type="PackedScene" uid="uid://da0m6ws3pykon" path="res://scenes/component/velocity_component.tscn" id="3_1gmey"]
@@ -93,6 +94,11 @@ _data = {
 "walk": SubResource("Animation_smmix")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4f0c8"]
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("2_1xykq")
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_aeoo5"]
 radius = 48.0
 
@@ -115,6 +121,9 @@ libraries = {
 [node name="DamageIntervalTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="HitSFX" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_4f0c8")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_ea2a2")]
 

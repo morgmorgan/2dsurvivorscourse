@@ -1,14 +1,26 @@
-[gd_scene load_steps=16 format=3 uid="uid://ckd478cvuru5p"]
+[gd_scene load_steps=21 format=3 uid="uid://ckd478cvuru5p"]
 
 [ext_resource type="Script" path="res://scenes/game_object/enemies/slime_enemy/slime_enemy.gd" id="1_esgir"]
 [ext_resource type="PackedScene" uid="uid://b22eo5ldww7qh" path="res://scenes/component/health_component.tscn" id="1_ghb2u"]
 [ext_resource type="PackedScene" uid="uid://da0m6ws3pykon" path="res://scenes/component/velocity_component.tscn" id="1_u4ty1"]
 [ext_resource type="PackedScene" uid="uid://c10c15uj7tma" path="res://scenes/component/death_component.tscn" id="2_0n551"]
+[ext_resource type="AudioStream" uid="uid://dnl5xrkk84fdu" path="res://assets/audio/hit1.wav" id="2_h5es4"]
 [ext_resource type="PackedScene" uid="uid://vfb2vveyuicg" path="res://scenes/component/vial_drop_component.tscn" id="2_lrtx3"]
 [ext_resource type="Texture2D" uid="uid://bgmrydsr53tfc" path="res://scenes/game_object/enemies/slime_enemy/slime.png" id="3_60fwq"]
+[ext_resource type="AudioStream" uid="uid://bjpyxd3d27syd" path="res://assets/audio/hit2.wav" id="3_u3jcy"]
+[ext_resource type="AudioStream" uid="uid://cnfb0wxenr6mq" path="res://assets/audio/hit3.wav" id="4_h7b8b"]
 [ext_resource type="PackedScene" uid="uid://dg7d4g8y0jla6" path="res://scenes/component/hurt_box_component.tscn" id="4_ywxih"]
+[ext_resource type="AudioStream" uid="uid://b6bucnxmbqjbd" path="res://assets/audio/hit4.wav" id="5_chore"]
 [ext_resource type="PackedScene" uid="uid://yr3n3mnmpyiw" path="res://scenes/component/hit_flash_component.tscn" id="8_5ycj4"]
 [ext_resource type="Shader" path="res://scenes/component/hit_flash_component.gdshader" id="9_f23qu"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_u3ce4"]
+playback_mode = 1
+streams_count = 4
+stream_0/stream = ExtResource("2_h5es4")
+stream_1/stream = ExtResource("3_u3jcy")
+stream_2/stream = ExtResource("4_h7b8b")
+stream_3/stream = ExtResource("5_chore")
 
 [sub_resource type="Animation" id="Animation_d2n3l"]
 length = 0.001
@@ -104,6 +116,10 @@ radius = 8.0
 collision_layer = 8
 collision_mask = 9
 script = ExtResource("1_esgir")
+
+[node name="HitSoundEffect" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_u3ce4")
+max_distance = 300.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

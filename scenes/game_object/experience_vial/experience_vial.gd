@@ -21,6 +21,8 @@ func on_area_entered(_other : Area2D):
 	tween.tween_property(sprite_2d, "scale", Vector2.ZERO, .15).set_delay(.35)
 	tween.chain()
 	tween.tween_callback(collect)
+	
+	$CollectSFX.play(0.75)
 
 func collect():
 	GameEvents.emit_experience_vial_collected(1)

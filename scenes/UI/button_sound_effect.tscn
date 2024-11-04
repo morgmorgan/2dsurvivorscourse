@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://celhb5lg0j6w8"]
+
+[ext_resource type="AudioStream" uid="uid://djp8ylsaa5hb8" path="res://assets/audio/click.wav" id="1_yxldy"]
+[ext_resource type="Script" path="res://scenes/UI/button_sound_effect.gd" id="2_edv52"]
+
+[node name="ButtonSoundEffect" type="AudioStreamPlayer"]
+stream = ExtResource("1_yxldy")
+bus = &"Sound Effects"
+script = ExtResource("2_edv52")

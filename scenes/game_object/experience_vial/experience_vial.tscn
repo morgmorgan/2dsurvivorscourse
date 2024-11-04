@@ -1,7 +1,14 @@
-[gd_scene load_steps=7 format=3 uid="uid://ovevgqoacaqo"]
+[gd_scene load_steps=9 format=3 uid="uid://ovevgqoacaqo"]
 
 [ext_resource type="Script" path="res://scenes/game_object/experience_vial/experience_vial.gd" id="1_10uwq"]
 [ext_resource type="Texture2D" uid="uid://dwqnpsjm0drob" path="res://scenes/game_object/experience_vial/soul.png" id="2_t5kcc"]
+[ext_resource type="AudioStream" uid="uid://brqeoxd60l7f6" path="res://assets/audio/shlurp.wav" id="2_ylvij"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tjopw"]
+playback_mode = 1
+random_pitch = 1.1
+streams_count = 1
+stream_0/stream = ExtResource("2_ylvij")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j8prc"]
 radius = 18.0
@@ -94,6 +101,11 @@ _data = {
 
 [node name="ExperienceVial" type="Node2D"]
 script = ExtResource("1_10uwq")
+
+[node name="CollectSFX" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_tjopw")
+max_distance = 300.0
+bus = &"Sound Effects"
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(0, -3)

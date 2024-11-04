@@ -1,6 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://byq4ut2f1lshs"]
+[gd_scene load_steps=12 format=3 uid="uid://byq4ut2f1lshs"]
 
 [ext_resource type="Script" path="res://scenes/UI/ability_upgrade_card.gd" id="1_fcx0b"]
+[ext_resource type="AudioStream" uid="uid://d0w36txhrlm3y" path="res://assets/audio/cardSlide4.ogg" id="2_0vskf"]
+[ext_resource type="AudioStream" uid="uid://1caetap4mdix" path="res://assets/audio/cardPlace2.ogg" id="3_8nqhu"]
 
 [sub_resource type="Animation" id="Animation_7620m"]
 length = 0.001
@@ -31,6 +33,20 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [0.0, -0.0872665, 0.0872665, 0.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HoverSFX")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_isxnt"]
@@ -164,6 +180,20 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(0, 0)]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ClickSFX")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8yytm"]
 _data = {
@@ -179,6 +209,16 @@ offset_right = 135.0
 offset_bottom = 215.0
 pivot_offset = Vector2(68, 108)
 script = ExtResource("1_fcx0b")
+
+[node name="HoverSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_0vskf")
+volume_db = -4.85
+bus = &"Sound Effects"
+
+[node name="ClickSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8nqhu")
+volume_db = -4.311
+bus = &"Sound Effects"
 
 [node name="HoverAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

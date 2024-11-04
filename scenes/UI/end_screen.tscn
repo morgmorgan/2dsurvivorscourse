@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://d5qt1hh47inp"]
+[gd_scene load_steps=7 format=3 uid="uid://d5qt1hh47inp"]
 
 [ext_resource type="Script" path="res://scenes/UI/end_screen.gd" id="1_2l70r"]
+[ext_resource type="PackedScene" uid="uid://celhb5lg0j6w8" path="res://scenes/UI/button_sound_effect.tscn" id="2_bvng2"]
 
 [sub_resource type="Animation" id="Animation_owh7i"]
 length = 0.001
@@ -128,7 +129,11 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Restart"
 
+[node name="ButtonSoundEffect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/RestartButton" instance=ExtResource("2_bvng2")]
+
 [node name="QuitButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Quit"
+
+[node name="ButtonSoundEffect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/QuitButton" instance=ExtResource("2_bvng2")]

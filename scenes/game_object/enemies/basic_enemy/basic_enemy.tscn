@@ -104,6 +104,7 @@ script = ExtResource("1_decuw")
 
 [node name="HitSoundEffect" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_pjt3l")
+max_distance = 300.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

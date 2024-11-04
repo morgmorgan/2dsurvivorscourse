@@ -69,6 +69,7 @@ func on_damage_interval_timer_timeout():
 func on_health_changed():
 	# This needs to be changed if healing is implemented
 	GameEvents.emit_player_damaged()
+	$HitSFX.play(0.5)
 	health_bar.value = health_component.get_health_percent()
 	
 func on_ability_upgrade_added(ability_upgrade : AbilityUpgrade, _current_upgrades : Dictionary):
