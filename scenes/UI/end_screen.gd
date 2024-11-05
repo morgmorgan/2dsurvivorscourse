@@ -17,6 +17,13 @@ func _ready():
 func set_defeat():
 	$%TitleLabel.text = "Defeat..."
 	$%SubtitleLabel.text = "Your flesh returns to the earth"
+	play_jingle(true)
+	
+func play_jingle(defeat : bool = false):
+	if defeat:
+		$DefeatSFX.play()
+	else:
+		$VictorySFX.play()
 	
 func on_restart_button_pressed():
 	get_tree().paused = false

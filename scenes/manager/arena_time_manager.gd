@@ -35,3 +35,4 @@ func on_timer_timeout():
 	if end_screen_instance == null:
 		return
 	add_child(end_screen_instance)
+	end_screen_instance.play_jingle()
