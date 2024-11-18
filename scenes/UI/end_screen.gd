@@ -12,7 +12,8 @@ func _ready():
 	
 	get_tree().paused = true
 	$%RestartButton.pressed.connect(on_restart_button_pressed)
-	$%QuitButton.pressed.connect(on_quit_button_pressed)
+	$%QuitButton.pressed.connect(quit_to_desktop)
+	%QuitToMenuButton.pressed.connect(quit_to_menu)
 	
 func set_defeat():
 	$%TitleLabel.text = "Defeat..."
@@ -29,5 +30,9 @@ func on_restart_button_pressed():
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/main/main.tscn")
 	
-func on_quit_button_pressed():
+func quit_to_desktop():
 	get_tree().quit()
+	
+func quit_to_menu():
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://scenes/UI/main_menu.tscn")

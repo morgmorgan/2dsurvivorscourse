@@ -73,11 +73,13 @@ autoplay = "in"
 
 [node name="VictorySFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_hdq06")
-bus = &"Music"
+volume_db = -10.0
+bus = &"Sound Effects"
 
 [node name="DefeatSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_05xg5")
-bus = &"Music"
+volume_db = -10.0
+bus = &"Sound Effects"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -141,9 +143,16 @@ text = "Restart"
 
 [node name="ButtonSoundEffect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/RestartButton" instance=ExtResource("2_bvng2")]
 
+[node name="QuitToMenuButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit to Menu"
+
+[node name="ButtonSoundEffect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/QuitToMenuButton" instance=ExtResource("2_bvng2")]
+
 [node name="QuitButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-text = "Quit"
+text = "Exit to Desktop"
 
 [node name="ButtonSoundEffect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/VBoxContainer/QuitButton" instance=ExtResource("2_bvng2")]

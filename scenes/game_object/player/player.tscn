@@ -124,6 +124,7 @@ one_shot = true
 
 [node name="HitSFX" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_4f0c8")
+bus = &"Sound Effects"
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_ea2a2")]
 

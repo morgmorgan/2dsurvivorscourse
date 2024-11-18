@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdpdytravlwmr"]
+
+[ext_resource type="AudioStream" uid="uid://bi3ubfk70g1e5" path="res://assets/audio/survivor_bgm.wav" id="1_57skh"]
+[ext_resource type="Script" path="res://scenes/autoload/bgm_player.gd" id="2_ex0ya"]
+
+[node name="BGMPlayer" type="AudioStreamPlayer"]
+process_mode = 3
+stream = ExtResource("1_57skh")
+volume_db = -5.0
+autoplay = true
+bus = &"Music"
+script = ExtResource("2_ex0ya")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

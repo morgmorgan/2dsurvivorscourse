@@ -1,14 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://ovevgqoacaqo"]
+[gd_scene load_steps=11 format=3 uid="uid://ovevgqoacaqo"]
 
 [ext_resource type="Script" path="res://scenes/game_object/experience_vial/experience_vial.gd" id="1_10uwq"]
+[ext_resource type="AudioStream" uid="uid://ntx0fi6qprf8" path="res://assets/audio/chime1ds.wav" id="2_jmoem"]
 [ext_resource type="Texture2D" uid="uid://dwqnpsjm0drob" path="res://scenes/game_object/experience_vial/soul.png" id="2_t5kcc"]
-[ext_resource type="AudioStream" uid="uid://brqeoxd60l7f6" path="res://assets/audio/shlurp.wav" id="2_ylvij"]
+[ext_resource type="AudioStream" uid="uid://c527lhkwoembi" path="res://assets/audio/chime1fs.wav" id="3_oh2en"]
+[ext_resource type="AudioStream" uid="uid://dx42qr5wad3ea" path="res://assets/audio/chime1gs.wav" id="4_ogqhy"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_tjopw"]
 playback_mode = 1
-random_pitch = 1.1
-streams_count = 1
-stream_0/stream = ExtResource("2_ylvij")
+streams_count = 3
+stream_0/stream = ExtResource("2_jmoem")
+stream_1/stream = ExtResource("3_oh2en")
+stream_2/stream = ExtResource("4_ogqhy")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_j8prc"]
 radius = 18.0
@@ -104,6 +107,7 @@ script = ExtResource("1_10uwq")
 
 [node name="CollectSFX" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamRandomizer_tjopw")
+volume_db = 7.5
 max_distance = 300.0
 bus = &"Sound Effects"
 

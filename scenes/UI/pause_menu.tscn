@@ -1,0 +1,85 @@
+[gd_scene load_steps=5 format=3 uid="uid://djkj7b4p40qsj"]
+
+[ext_resource type="Script" path="res://scenes/UI/pause_menu.gd" id="1_vu1s4"]
+[ext_resource type="PackedScene" uid="uid://celhb5lg0j6w8" path="res://scenes/UI/button_sound_effect.tscn" id="3_oj28p"]
+[ext_resource type="PackedScene" uid="uid://ddpbe5a8ga284" path="res://scenes/UI/options_container.tscn" id="4_3s5nt"]
+[ext_resource type="PackedScene" uid="uid://58035g2nblwg" path="res://scenes/UI/vignette.tscn" id="4_qyygl"]
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_vu1s4")
+
+[node name="Vignette" parent="." instance=ExtResource("4_qyygl")]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.341176)
+
+[node name="PauseContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="PauseContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseContainer/PanelContainer/MarginContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="PauseContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.129412, 0.129412, 0.137255, 1)
+theme_override_constants/outline_size = 7
+theme_override_font_sizes/font_size = 32
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="PauseContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Resume"
+
+[node name="ButtonSoundEffect" parent="PauseContainer/PanelContainer/MarginContainer/VBoxContainer/ResumeButton" instance=ExtResource("3_oj28p")]
+
+[node name="OptionsButton" type="Button" parent="PauseContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Options
+"
+
+[node name="ButtonSoundEffect" parent="PauseContainer/PanelContainer/MarginContainer/VBoxContainer/OptionsButton" instance=ExtResource("3_oj28p")]
+
+[node name="QuitToMenuButton" type="Button" parent="PauseContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit to Menu"
+
+[node name="ButtonSoundEffect" parent="PauseContainer/PanelContainer/MarginContainer/VBoxContainer/QuitToMenuButton" instance=ExtResource("3_oj28p")]
+
+[node name="QuitButton" type="Button" parent="PauseContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Exit to Desktop"
+
+[node name="ButtonSoundEffect" parent="PauseContainer/PanelContainer/MarginContainer/VBoxContainer/QuitButton" instance=ExtResource("3_oj28p")]
+
+[node name="OptionsContainer" parent="." instance=ExtResource("4_3s5nt")]
+visible = false
