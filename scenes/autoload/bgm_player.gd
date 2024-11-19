@@ -9,3 +9,6 @@ func on_finished():
 	
 func on_timer_timeout():
 	play()
+	
+func bass_only(value : bool):
+	AudioServer.set_bus_effect_enabled(AudioServer.get_bus_index("Music"), 0, value)

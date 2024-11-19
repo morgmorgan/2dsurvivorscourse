@@ -2,6 +2,7 @@ extends CanvasLayer
 
 func _ready():
 	get_tree().paused = true
+	BgmPlayer.bass_only(true)
 	%ResumeButton.pressed.connect(close)
 	%QuitButton.pressed.connect(quit_to_desktop)
 	%QuitToMenuButton.pressed.connect(quit_to_menu)
@@ -15,6 +16,7 @@ func _unhandled_input(event):
 
 func close():
 	get_tree().paused = false
+	BgmPlayer.bass_only(false)
 	queue_free()
 	
 func quit_to_desktop():
@@ -22,6 +24,7 @@ func quit_to_desktop():
 	
 func quit_to_menu():
 	get_tree().paused = false
+	BgmPlayer.bass_only(false)
 	get_tree().change_scene_to_file("res://scenes/UI/main_menu.tscn")
 	
 func options_pressed():
