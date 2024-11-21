@@ -15,6 +15,8 @@ func _unhandled_input(event):
 		close()
 
 func close():
+	$AnimationPlayer.play("fade_out")
+	await $AnimationPlayer.animation_finished
 	get_tree().paused = false
 	BgmPlayer.bass_only(false)
 	queue_free()
