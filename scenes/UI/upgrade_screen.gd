@@ -9,6 +9,7 @@ signal upgrade_selected(upgrade : AbilityUpgrade)
 
 func _ready():
 	get_tree().paused = true
+	BgmPlayer.bass_only(true)
 
 func set_ability_upgrades(upgrades : Array[AbilityUpgrade]):
 	var delay = 0.0
@@ -25,4 +26,5 @@ func on_upgrade_selected(upgrade : AbilityUpgrade):
 	$AnimationPlayer.play("out")
 	await $AnimationPlayer.animation_finished
 	get_tree().paused = false
+	BgmPlayer.bass_only(false)
 	queue_free()
