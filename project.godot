@@ -12,6 +12,8 @@ config_version=5
 
 config/name="2DSurvivorsCourse"
 run/main_scene="res://scenes/UI/main_menu.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="WizardSurvivor"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -19,6 +21,8 @@ config/icon="res://icon.svg"
 
 GameEvents="*res://scenes/autoload/game_events/game_events.tscn"
 BgmPlayer="*res://scenes/autoload/bgm_player.tscn"
+ScreenTransition="*res://scenes/autoload/screen_transition.tscn"
+MetaProgression="*res://scenes/autoload/meta_progression.tscn"
 
 [debug]
 

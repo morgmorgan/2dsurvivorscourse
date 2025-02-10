@@ -15,6 +15,8 @@ func _ready():
 	$%QuitButton.pressed.connect(quit_to_desktop)
 	%QuitToMenuButton.pressed.connect(quit_to_menu)
 	
+	MetaProgression.save_data()
+	
 func set_defeat():
 	$%TitleLabel.text = "Defeat..."
 	$%SubtitleLabel.text = "Your flesh returns to the earth"
@@ -28,6 +30,8 @@ func play_jingle(defeat : bool = false):
 	
 func on_restart_button_pressed():
 	get_tree().paused = false
+	ScreenTransition.transition()
+	await ScreenTransition.transitioned_halfway
 	get_tree().change_scene_to_file("res://scenes/main/main.tscn")
 	
 func quit_to_desktop():
@@ -35,4 +39,6 @@ func quit_to_desktop():
 	
 func quit_to_menu():
 	get_tree().paused = false
+	ScreenTransition.transition()
+	await ScreenTransition.transitioned_halfway
 	get_tree().change_scene_to_file("res://scenes/UI/main_menu.tscn")

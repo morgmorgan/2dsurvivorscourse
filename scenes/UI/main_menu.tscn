@@ -66,3 +66,4 @@ text = "Quit"
 [node name="ButtonSoundEffect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/QuitButton" instance=ExtResource("2_d64j6")]
 
 [node name="Vignette" parent="." instance=ExtResource("4_cbkul")]
+layer = 2

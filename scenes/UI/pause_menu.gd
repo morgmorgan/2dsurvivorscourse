@@ -27,6 +27,8 @@ func quit_to_desktop():
 func quit_to_menu():
 	get_tree().paused = false
 	BgmPlayer.bass_only(false)
+	ScreenTransition.transition()
+	await ScreenTransition.transitioned_halfway
 	get_tree().change_scene_to_file("res://scenes/UI/main_menu.tscn")
 	
 func options_pressed():

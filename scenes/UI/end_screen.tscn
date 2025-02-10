@@ -1,9 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://d5qt1hh47inp"]
+[gd_scene load_steps=7 format=3 uid="uid://d5qt1hh47inp"]
 
 [ext_resource type="Script" path="res://scenes/UI/end_screen.gd" id="1_2l70r"]
 [ext_resource type="PackedScene" uid="uid://celhb5lg0j6w8" path="res://scenes/UI/button_sound_effect.tscn" id="2_bvng2"]
-[ext_resource type="AudioStream" uid="uid://dvvteome7ih6n" path="res://assets/audio/victory_jingle.wav" id="2_hdq06"]
-[ext_resource type="AudioStream" uid="uid://o4x3nfdwb8aw" path="res://assets/audio/defeat_jingle2.wav" id="3_05xg5"]
 
 [sub_resource type="Animation" id="Animation_owh7i"]
 length = 0.001
@@ -72,12 +70,10 @@ libraries = {
 autoplay = "in"
 
 [node name="VictorySFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_hdq06")
 volume_db = -10.0
 bus = &"Sound Effects"
 
 [node name="DefeatSFX" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_05xg5")
 volume_db = -10.0
 bus = &"Sound Effects"
 
