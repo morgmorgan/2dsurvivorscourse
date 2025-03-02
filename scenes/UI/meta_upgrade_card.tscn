@@ -1,0 +1,197 @@
+[gd_scene load_steps=9 format=3 uid="uid://dbhjc1a6frv3i"]
+
+[ext_resource type="Script" path="res://scenes/UI/meta_upgrade_card.gd" id="1_lf0l7"]
+[ext_resource type="AudioStream" uid="uid://1caetap4mdix" path="res://assets/audio/cardPlace2.ogg" id="3_g7bs7"]
+[ext_resource type="Texture2D" uid="uid://dwqnpsjm0drob" path="res://scenes/game_object/experience_vial/soul.png" id="4_uyr4p"]
+
+[sub_resource type="Animation" id="Animation_th87s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2fnqt"]
+resource_name = "selected"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.4),
+"transitions": PackedFloat32Array(1, 2.37841, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ClickSFX")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8yytm"]
+_data = {
+"RESET": SubResource("Animation_th87s"),
+"selected": SubResource("Animation_2fnqt")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1xno2"]
+bg_color = Color(0.129412, 0.129412, 0.137255, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.129412, 0.129412, 0.137255, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_khkqv"]
+bg_color = Color(0.407843, 0.760784, 0.827451, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.129412, 0.129412, 0.137255, 1)
+
+[node name="MetaUpgradeCard" type="PanelContainer" groups=["meta_upgrade_card"]]
+custom_minimum_size = Vector2(175, 0)
+offset_right = 135.0
+offset_bottom = 215.0
+pivot_offset = Vector2(68, 108)
+script = ExtResource("1_lf0l7")
+
+[node name="ClickSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_g7bs7")
+volume_db = -4.311
+bus = &"Sound Effects"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8yytm")
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = -2
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="NameContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"AlternatePanelContainer"
+
+[node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer/NameContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(90, 65)
+layout_mode = 2
+theme_override_constants/outline_size = 9
+theme_override_font_sizes/font_size = 32
+text = "Sample Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="DescriptionLabel" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_constants/outline_size = 5
+text = "Sample Description goes here"
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 8
+
+[node name="ProgressLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+text = "69/420"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+mouse_filter = 2
+texture = ExtResource("4_uyr4p")
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_1xno2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_khkqv")
+max_value = 1.0
+value = 0.5
+rounded = true
+show_percentage = false
+
+[node name="PurchaseButton" type="Button" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Unlock"

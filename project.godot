@@ -43,6 +43,7 @@ enemy=""
 entities_layer=""
 foreground_layer=""
 upgrade_card=""
+meta_upgrade_card=""
 
 [gui]
 
