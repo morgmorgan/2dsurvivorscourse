@@ -9,6 +9,8 @@ func _ready():
 	health_component.died.connect(on_died)
 	
 func on_died():
+	var adjusted_drop_percent = drop_percent
+	
 	if randf() > drop_percent:
 		return
 	

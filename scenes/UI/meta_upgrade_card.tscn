@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dbhjc1a6frv3i"]
+[gd_scene load_steps=10 format=3 uid="uid://dbhjc1a6frv3i"]
 
 [ext_resource type="Script" path="res://scenes/UI/meta_upgrade_card.gd" id="1_lf0l7"]
 [ext_resource type="AudioStream" uid="uid://1caetap4mdix" path="res://assets/audio/cardPlace2.ogg" id="3_g7bs7"]
@@ -80,6 +80,8 @@ _data = {
 "selected": SubResource("Animation_2fnqt")
 }
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sivva"]
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1xno2"]
 bg_color = Color(0.129412, 0.129412, 0.137255, 1)
 border_width_left = 3
@@ -154,15 +156,31 @@ autowrap_mode = 2
 layout_mode = 2
 mouse_filter = 2
 
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_top = 8
+
+[node name="CountLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 3
+text = "Lvl. 9"
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [node name="VSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_sivva")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = -4
 
 [node name="ProgressLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/MarginContainer"]
 unique_name_in_owner = true

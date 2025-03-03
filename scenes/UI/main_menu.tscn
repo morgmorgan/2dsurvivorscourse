@@ -50,6 +50,13 @@ text = "Play"
 
 [node name="ButtonSoundEffect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PlayButton" instance=ExtResource("2_d64j6")]
 
+[node name="UpgradesButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Upgrades"
+
+[node name="ButtonSoundEffect" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/UpgradesButton" instance=ExtResource("2_d64j6")]
+
 [node name="OptionsButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
