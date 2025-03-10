@@ -130,7 +130,7 @@ autoplay = "walk"
 health_component = NodePath("../HealthComponent")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("1_u4ty1")]
-max_speed = 60
+max_speed = 80
 acceleration = 20.0
 
 [node name="HealthComponent" parent="." instance=ExtResource("1_ghb2u")]

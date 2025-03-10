@@ -1,13 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://0v51fisak8ig"]
+[gd_scene load_steps=6 format=3 uid="uid://0v51fisak8ig"]
 
 [ext_resource type="Script" path="res://scenes/manager/enemy_manager.gd" id="1_jis58"]
 [ext_resource type="PackedScene" uid="uid://cx1avpqevshhw" path="res://scenes/game_object/enemies/basic_enemy/basic_enemy.tscn" id="2_cc65w"]
 [ext_resource type="PackedScene" uid="uid://ckd478cvuru5p" path="res://scenes/game_object/enemies/slime_enemy/slime_enemy.tscn" id="3_bp8rr"]
+[ext_resource type="PackedScene" uid="uid://cjjbnrk3ote21" path="res://scenes/game_object/enemies/yellow_slime_enemy/yellow_slime_enemy.tscn" id="4_pvp3m"]
+[ext_resource type="PackedScene" uid="uid://bkl66n0tqg1tj" path="res://scenes/game_object/enemies/golem/golem_enemy.tscn" id="5_ft67o"]
 
 [node name="EnemyManager" type="Node"]
 script = ExtResource("1_jis58")
 basic_enemy_scene = ExtResource("2_cc65w")
 slime_enemy_scene = ExtResource("3_bp8rr")
+yellow_slime_enemy_scene = ExtResource("4_pvp3m")
+golem_enemy_scene = ExtResource("5_ft67o")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

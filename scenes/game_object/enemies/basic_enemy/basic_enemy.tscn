@@ -115,7 +115,7 @@ autoplay = "walk"
 acceleration = 10.0
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_aslc5")]
-max_health = 5.0
+is_crab = true
 
 [node name="VialDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_hs8px")]
 health_component = NodePath("../HealthComponent")

@@ -11,8 +11,13 @@ var upgrade_options = 3
 ###### Upgrades
 var upgrade_axe = preload("res://resources/upgrades/axe.tres")
 var upgrade_axe_damage = preload("res://resources/upgrades/axe_damage.tres")
+
 var upgrade_sword_rate = preload("res://resources/upgrades/sword_rate.tres")
 var upgrade_sword_damage = preload("res://resources/upgrades/sword_damage.tres")
+
+var upgrade_smite = preload("res://resources/upgrades/smite.tres")
+var upgrade_smite_cooldown = preload("res://resources/upgrades/smite_cooldown.tres")
+
 var upgrade_player_speed = preload("res://resources/upgrades/player_speed.tres")
 
 func _ready():
@@ -21,14 +26,18 @@ func _ready():
 	
 func create_upgrade_pool():
 	upgrade_pool.add_item(upgrade_axe, 10)
+	if MetaProgression.get_upgrade_count("unlock_smite") > 0:
+		upgrade_pool.add_item(upgrade_smite, 10)
 	upgrade_pool.add_item(upgrade_sword_rate, 10)
 	upgrade_pool.add_item(upgrade_sword_damage, 10)
-	upgrade_pool.add_item(upgrade_player_speed, 5)
+	upgrade_pool.add_item(upgrade_player_speed, 10)
 	
 func update_upgrade_pool(chosen_upgrade : AbilityUpgrade):
 	if chosen_upgrade.id == upgrade_axe.id:
 		upgrade_pool.add_item(upgrade_axe_damage, 10)
 		
+	if chosen_upgrade.id == upgrade_smite.id:
+		upgrade_pool.add_item(upgrade_smite_cooldown, 10)
 	#for 
 
 func pick_upgrades():

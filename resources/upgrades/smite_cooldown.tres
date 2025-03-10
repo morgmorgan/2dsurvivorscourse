@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://clc0gyttwrd5p"]
+
+[ext_resource type="Script" path="res://resources/upgrades/ability_upgrade.gd" id="1_7uhrn"]
+
+[resource]
+script = ExtResource("1_7uhrn")
+id = "smite_cooldown"
+max_quantity = 9
+name = "Smite Cooldown"
+description = "Decreases smite cooldown by 1 second"
+prerequisite_ids = Array[String](["smite"])

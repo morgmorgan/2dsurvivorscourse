@@ -1,0 +1,128 @@
+[gd_scene load_steps=20 format=3 uid="uid://bkl66n0tqg1tj"]
+
+[ext_resource type="Script" path="res://scenes/game_object/enemies/golem/golem_enemy.gd" id="1_0kvhf"]
+[ext_resource type="AudioStream" uid="uid://0vc874ytqct0" path="res://assets/audio/hits/hit1cs.wav" id="2_cdnxe"]
+[ext_resource type="AudioStream" uid="uid://bw4vav0oacih8" path="res://assets/audio/hits/hit1ds.wav" id="3_e4itj"]
+[ext_resource type="AudioStream" uid="uid://b67c4v7x3gan1" path="res://assets/audio/hits/hit1f.wav" id="4_ibi3s"]
+[ext_resource type="PackedScene" uid="uid://vfb2vveyuicg" path="res://scenes/component/vial_drop_component.tscn" id="5_m1f03"]
+[ext_resource type="PackedScene" uid="uid://da0m6ws3pykon" path="res://scenes/component/velocity_component.tscn" id="6_sbfag"]
+[ext_resource type="PackedScene" uid="uid://b22eo5ldww7qh" path="res://scenes/component/health_component.tscn" id="7_6bjkc"]
+[ext_resource type="PackedScene" uid="uid://yr3n3mnmpyiw" path="res://scenes/component/hit_flash_component.tscn" id="8_lp8cb"]
+[ext_resource type="Shader" path="res://scenes/component/hit_flash_component.gdshader" id="9_vjymx"]
+[ext_resource type="PackedScene" uid="uid://c10c15uj7tma" path="res://scenes/component/death_component.tscn" id="10_laka1"]
+[ext_resource type="Texture2D" uid="uid://bpx6k8oou31qm" path="res://scenes/game_object/enemies/golem/golem.png" id="11_hna1t"]
+[ext_resource type="PackedScene" uid="uid://dg7d4g8y0jla6" path="res://scenes/component/hurt_box_component.tscn" id="12_1b507"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_gbrd5"]
+playback_mode = 1
+streams_count = 3
+stream_0/stream = ExtResource("2_cdnxe")
+stream_1/stream = ExtResource("3_e4itj")
+stream_2/stream = ExtResource("4_ibi3s")
+
+[sub_resource type="Animation" id="Animation_d2n3l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_wm73q"]
+resource_name = "walk"
+length = 2.0
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.174533, 0.174533, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dta84"]
+_data = {
+"RESET": SubResource("Animation_d2n3l"),
+"walk": SubResource("Animation_wm73q")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r3f3r"]
+resource_local_to_scene = true
+shader = ExtResource("9_vjymx")
+shader_parameter/lerp_percent = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0pbjk"]
+radius = 13.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eutb7"]
+radius = 8.0
+
+[node name="GolemEnemy" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 8
+collision_mask = 9
+script = ExtResource("1_0kvhf")
+
+[node name="HitSoundEffect" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_gbrd5")
+max_distance = 300.0
+bus = &"Sound Effects"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_dta84")
+}
+autoplay = "walk"
+
+[node name="VialDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_m1f03")]
+drop_percent = 1.0
+health_component = NodePath("../HealthComponent")
+
+[node name="VelocityComponent" parent="." instance=ExtResource("6_sbfag")]
+max_speed = 25
+acceleration = 100.0
+
+[node name="HealthComponent" parent="." instance=ExtResource("7_6bjkc")]
+max_health = 100.0
+is_golem = true
+
+[node name="HitFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("8_lp8cb")]
+health_component = NodePath("../HealthComponent")
+sprite = NodePath("../Visuals/Sprite2D")
+hit_flash_material = SubResource("ShaderMaterial_r3f3r")
+
+[node name="DeathComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("10_laka1")]
+health_component = NodePath("../HealthComponent")
+sprite = NodePath("../Visuals/Sprite2D")
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+position = Vector2(-1.30265, 0)
+texture = ExtResource("11_hna1t")
+offset = Vector2(3, -14)
+
+[node name="HurtBoxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("12_1b507")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBoxComponent"]
+position = Vector2(0, -9)
+shape = SubResource("CircleShape2D_0pbjk")
+debug_color = Color(0.964706, 0, 0.501961, 0.0156863)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_eutb7")
+debug_color = Color(0, 0.6, 0.701961, 0.0431373)

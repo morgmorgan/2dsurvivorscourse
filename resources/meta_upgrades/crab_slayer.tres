@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MetaUpgrade" load_steps=2 format=3 uid="uid://bnnha8sdqg7fa"]
+
+[ext_resource type="Script" path="res://resources/meta_upgrades/meta_upgrade.gd" id="1_i55b4"]
+
+[resource]
+script = ExtResource("1_i55b4")
+id = "crab_slayer"
+max_quantity = 5
+exp_cost = 20
+title = "Crab Slayer"
+description = "Reduces Crab max health by 10% per level"

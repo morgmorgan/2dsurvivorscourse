@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@export var arena_time_manager : ArenaTimeManager
+
 @onready var damage_interval_timer : Timer = $DamageIntervalTimer
 @onready var health_component : HealthComponent = $HealthComponent
 @onready var health_bar : ProgressBar = $HealthBar
@@ -10,20 +12,31 @@ extends CharacterBody2D
 
 var colliding_bodies : int = 0 
 var base_speed : int = 0
+var base_health_regen : float = 0
 
 func _ready():
 	$CollisionArea2D.body_entered.connect(on_body_entered)
 	$CollisionArea2D.body_exited.connect(on_body_exited)
 	damage_interval_timer.timeout.connect(on_damage_interval_timer_timeout)
+	health_component.damaged.connect(on_damaged)
 	health_component.health_changed.connect(on_health_changed)
 	GameEvents.ability_upgrade_added.connect(on_ability_upgrade_added)
+	arena_time_manager.arena_difficulty_increased.connect(on_difficulty_increased)
 	
 	base_speed = velocity_component.max_speed
 	
+	check_meta_upgrades()
+	
 	update_health_display()
+	
+func check_meta_upgrades():
+	base_health_regen += (float)(MetaProgression.get_upgrade_count("health_regen"))
+	
+	health_component.max_health += MetaProgression.get_upgrade_count("max_health")
+	health_component.heal(100)
 
 
-func _process(delta):
+func _process(_delta):
 	var direction = get_movement_vector().normalized()
 	
 	velocity_component.accelerate_in_direction(direction)
@@ -66,11 +79,9 @@ func on_body_exited(_other_body : Node2D):
 func on_damage_interval_timer_timeout():
 	check_for_damage()
 
-func on_health_changed():
-	# This needs to be changed if healing is implemented
+func on_damaged():
 	GameEvents.emit_player_damaged()
-	$HitSFX.play(0.5)
-	health_bar.value = health_component.get_health_percent()
+	$HitSFX.play(0.5)	
 	
 func on_ability_upgrade_added(ability_upgrade : AbilityUpgrade, _current_upgrades : Dictionary):
 	if ability_upgrade is Ability:
@@ -79,3 +90,9 @@ func on_ability_upgrade_added(ability_upgrade : AbilityUpgrade, _current_upgrade
 	elif ability_upgrade.id == "player_speed":
 		velocity_component.max_speed = base_speed + int(\
 		base_speed * _current_upgrades["player_speed"]["quantity"] * 0.1)
+
+func on_health_changed():
+	health_bar.value = health_component.get_health_percent()
+
+func on_difficulty_increased(_difficulty : int):
+	health_component.heal(base_health_regen)

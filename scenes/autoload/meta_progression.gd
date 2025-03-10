@@ -1,6 +1,6 @@
 extends Node
 
-const save_filepath = "user://game_data.save"
+const save_filepath = "user://wizard_survivor_gamedata.save"
 
 var meta_data : Dictionary = {
 	"meta_upgrade_currency" : 0,

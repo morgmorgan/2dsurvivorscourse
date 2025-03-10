@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Ability" load_steps=3 format=3 uid="uid://cjcdh083400o8"]
+
+[ext_resource type="PackedScene" uid="uid://dcnya6exni6bf" path="res://scenes/ability/smite_ability/smite_ability_controller.tscn" id="1_e1a3e"]
+[ext_resource type="Script" path="res://resources/upgrades/ability.gd" id="2_tyrv6"]
+
+[resource]
+script = ExtResource("2_tyrv6")
+ability_controller_scene = ExtResource("1_e1a3e")
+id = "smite"
+max_quantity = 1
+name = "Smite"
+description = "Periodically smites enemies in a large area with a spectral sword"
+prerequisite_ids = Array[String]([])

@@ -206,7 +206,6 @@ theme_override_styles/background = SubResource("StyleBoxFlat_1xno2")
 theme_override_styles/fill = SubResource("StyleBoxFlat_khkqv")
 max_value = 1.0
 value = 0.5
-rounded = true
 show_percentage = false
 
 [node name="PurchaseButton" type="Button" parent="MarginContainer/VBoxContainer"]

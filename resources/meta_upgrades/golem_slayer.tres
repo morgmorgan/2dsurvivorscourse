@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MetaUpgrade" load_steps=2 format=3 uid="uid://73svf5nyiyf3"]
+
+[ext_resource type="Script" path="res://resources/meta_upgrades/meta_upgrade.gd" id="1_0bpxb"]
+
+[resource]
+script = ExtResource("1_0bpxb")
+id = "golem_slayer"
+max_quantity = 5
+exp_cost = 20
+title = "Golem Slayer"
+description = "Reduces Golem max health by 10% per level"

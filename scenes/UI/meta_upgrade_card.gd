@@ -20,7 +20,7 @@ func update_progress():
 	var is_maxed = current_quantity >= upgrade.max_quantity
 	var currency = MetaProgression.meta_data["meta_upgrade_currency"]
 	var percent =  currency / upgrade.exp_cost
-	percent = min(percent, 1)
+	percent = min(percent, 1.0)
 	progress_bar.value = percent
 	purchase_button.disabled = percent < 1 || is_maxed
 	if is_maxed:
